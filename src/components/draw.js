@@ -208,8 +208,11 @@ export function drawLineDataPoints (series, opts, config, context, process = 1) 
             context.stroke();
         });
 
-        if (opts.dataPointShape !== false) {        
+        if (opts.dataPointShape === true) {
             let shape = config.dataPointShape[seriesIndex % config.dataPointShape.length];
+            drawPointShape(points, eachSeries.color, shape, context);
+        } else if (opts.dataPointShape[seriesIndex]) {
+            let shape = opts.dataPointShape[seriesIndex]
             drawPointShape(points, eachSeries.color, shape, context);
         }
     });
